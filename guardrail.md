@@ -27,10 +27,6 @@ money or trade.
 | Whether something is a scam | Protects their money |
 | Credit score, entered via PAN, with plain-language insight | Decided 29 Aug — in scope by design, not borderline |
 
-**Siddharth's example (10 Sep):** a customer asks about a political situation affecting their trade.
-His instruction — *"then we need to allow."* The guardrail is not testing whether the topic is
-political. It is testing whether the answer changes what the customer earns, owes, or should do
-about their shop.
 
 | Refuse | |
 |---|---|
