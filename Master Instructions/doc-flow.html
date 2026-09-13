@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Instruction file flow</title>
+<style>
+body{margin:0;background:#EDECEF;font-family:Inter,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:28px 20px 60px}
+.card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 1px 4px rgba(50,35,70,.08);overflow-x:auto}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="card">
+<svg viewBox="0 0 700 900" width="700" height="900" xmlns="http://www.w3.org/2000/svg" font-family="Inter,sans-serif">
+<defs>
+<marker id="ag" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#8C8696"/></marker>
+<marker id="ard" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><path d="M0,0 L9,3.5 L0,7 z" fill="#C0392B"/></marker>
+</defs>
+
+<text x="30" y="22" font-size="10.5" font-weight="700" fill="#6E6A76" letter-spacing="1.5">RUNTIME — RUNS IN ORDER</text>
+
+<rect x="30" y="40" width="310" height="52" rx="8" fill="#F3F1F6" stroke="#8C8696"/>
+<text x="185" y="71" font-size="14" font-weight="700" fill="#3A3542" text-anchor="middle">Customer message</text>
+
+<rect x="30" y="112" width="310" height="72" rx="8" fill="#5B2480" stroke="#3B1352"/>
+<text x="185" y="140" font-size="14" font-weight="700" fill="#ffffff" text-anchor="middle">master.md</text>
+<text x="185" y="159" font-size="10.5" fill="#CDB4E0" text-anchor="middle">Dispatches the agents</text>
+<text x="185" y="173" font-size="10.5" fill="#CDB4E0" text-anchor="middle">Holds the rules binding all of them</text>
+
+<rect x="30" y="204" width="310" height="80" rx="8" fill="#EFEDFD" stroke="#6B5FC7"/>
+<text x="48" y="228" font-size="12.5" font-weight="700" fill="#3C3489">1</text>
+<text x="72" y="228" font-size="13" font-weight="700" fill="#3C3489">guardrail.md</text>
+<text x="48" y="250" font-size="10.5" fill="#4B4497">in: message</text>
+<text x="48" y="268" font-size="10.5" fill="#4B4497">out: in_scope, or refusal_text</text>
+
+<rect x="30" y="304" width="310" height="80" rx="8" fill="#E4F6EF" stroke="#2E8B6F"/>
+<text x="48" y="328" font-size="12.5" font-weight="700" fill="#0C6A52">2</text>
+<text x="72" y="328" font-size="13" font-weight="700" fill="#0C6A52">connector.md</text>
+<text x="48" y="350" font-size="10.5" fill="#14755C">in: intent</text>
+<text x="48" y="368" font-size="10.5" fill="#14755C">out: customer data, missing</text>
+
+<rect x="30" y="404" width="310" height="80" rx="8" fill="#E4F6EF" stroke="#2E8B6F"/>
+<text x="48" y="428" font-size="12.5" font-weight="700" fill="#0C6A52">3</text>
+<text x="72" y="428" font-size="13" font-weight="700" fill="#0C6A52">sources.md</text>
+<text x="48" y="450" font-size="10.5" fill="#14755C">in: intent</text>
+<text x="48" y="468" font-size="10.5" fill="#14755C">out: general knowledge</text>
+
+<rect x="30" y="504" width="310" height="104" rx="8" fill="#FCEAF1" stroke="#D4537E"/>
+<text x="48" y="528" font-size="12.5" font-weight="700" fill="#9B3558">4</text>
+<text x="72" y="528" font-size="13" font-weight="700" fill="#9B3558">Response agent</text>
+<text x="48" y="550" font-size="10.5" fill="#A84466">artifact-picker.md · story.md</text>
+<text x="48" y="572" font-size="10.5" fill="#A84466">in: everything above</text>
+<text x="48" y="590" font-size="10.5" fill="#A84466">out: text, artifact or none, follow-ups</text>
+
+<rect x="30" y="628" width="310" height="62" rx="8" fill="#F3F1F6" stroke="#8C8696"/>
+<text x="185" y="654" font-size="14" font-weight="700" fill="#3A3542" text-anchor="middle">Code renders</text>
+<text x="185" y="673" font-size="10.5" fill="#6E6A76" text-anchor="middle">Text + artifact + follow-ups</text>
+
+<line x1="185" y1="92" x2="185" y2="106" stroke="#8C8696" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="185" y1="184" x2="185" y2="198" stroke="#8C8696" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="185" y1="284" x2="185" y2="298" stroke="#8C8696" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="185" y1="384" x2="185" y2="398" stroke="#8C8696" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="185" y1="484" x2="185" y2="498" stroke="#8C8696" stroke-width="1.6" marker-end="url(#ag)"/>
+<line x1="185" y1="608" x2="185" y2="622" stroke="#8C8696" stroke-width="1.6" marker-end="url(#ag)"/>
+
+<rect x="440" y="224" width="180" height="42" rx="7" fill="#FDEEEC" stroke="#C0392B"/>
+<text x="530" y="243" font-size="11.5" font-weight="700" fill="#A9321F" text-anchor="middle">Refusal</text>
+<text x="530" y="258" font-size="9.5" fill="#B75443" text-anchor="middle">chain stops</text>
+<line x1="340" y1="245" x2="434" y2="245" stroke="#C0392B" stroke-width="1.5" marker-end="url(#ard)"/>
+<text x="348" y="238" font-size="9" fill="#C0392B">out of scope</text>
+
+<rect x="440" y="324" width="180" height="42" rx="7" fill="#FDEEEC" stroke="#C0392B"/>
+<text x="530" y="343" font-size="11.5" font-weight="700" fill="#A9321F" text-anchor="middle">Connect prompt</text>
+<text x="530" y="358" font-size="9.5" fill="#B75443" text-anchor="middle">chain stops</text>
+<line x1="340" y1="345" x2="434" y2="345" stroke="#C0392B" stroke-width="1.5" marker-end="url(#ard)"/>
+<text x="348" y="338" font-size="9" fill="#C0392B">not connected</text>
+
+<rect x="440" y="534" width="180" height="42" rx="7" fill="#F3F1F6" stroke="#8C8696"/>
+<text x="530" y="553" font-size="11.5" font-weight="700" fill="#3A3542" text-anchor="middle">No artifact</text>
+<text x="530" y="568" font-size="9.5" fill="#6E6A76" text-anchor="middle">text only — valid</text>
+<line x1="340" y1="555" x2="434" y2="555" stroke="#8C8696" stroke-width="1.5" marker-end="url(#ag)"/>
+
+<line x1="620" y1="266" x2="660" y2="266" stroke="#C0392B" stroke-width="1.3" stroke-dasharray="3 3"/>
+<path d="M 660 266 L 660 659 L 346 659" fill="none" stroke="#8C8696" stroke-width="1.3" stroke-dasharray="3 3" marker-end="url(#ag)"/>
+<line x1="620" y1="366" x2="660" y2="366" stroke="#C0392B" stroke-width="1.3" stroke-dasharray="3 3"/>
+<line x1="620" y1="576" x2="660" y2="576" stroke="#8C8696" stroke-width="1.3" stroke-dasharray="3 3"/>
+
+<text x="30" y="740" font-size="10.5" font-weight="700" fill="#6E6A76" letter-spacing="1.5">LOADED, NEVER RUNS ON ITS OWN</text>
+
+<rect x="30" y="756" width="186" height="58" rx="8" fill="#ffffff" stroke="#E5B23C" stroke-dasharray="4 3"/>
+<text x="46" y="778" font-size="12" font-weight="700" fill="#8A6100">voice.md</text>
+<text x="46" y="797" font-size="10" fill="#9C7530">read by 1 and 4</text>
+
+<rect x="236" y="756" width="186" height="58" rx="8" fill="#ffffff" stroke="#D4537E" stroke-dasharray="4 3"/>
+<text x="252" y="778" font-size="12" font-weight="700" fill="#9B3558">score.md</text>
+<text x="252" y="797" font-size="10" fill="#B06A87">read by 4, score intents only</text>
+
+<rect x="442" y="756" width="186" height="58" rx="8" fill="#ffffff" stroke="#2E8B6F" stroke-dasharray="4 3"/>
+<text x="458" y="778" font-size="12" font-weight="700" fill="#0C6A52">artifacts.md</text>
+<text x="458" y="797" font-size="10" fill="#4C8C78">looked up by 4</text>
+
+<rect x="30" y="836" width="598" height="40" rx="7" fill="#ffffff" stroke="#DEDCE3"/>
+<text x="46" y="861" font-size="10.5" fill="#3A3542">Three ways the chain ends early — a refusal, a connect prompt, a reply with no artifact. None is an error.</text>
+</svg>
+</div>
+</div>
+</body>
+</html>
