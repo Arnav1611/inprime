@@ -17,13 +17,42 @@ code.
 **Worked example — money out.** The artifact carries ₹78,900 and its breakdown. The text reads:
 *You spent ₹78,900 in August out of ₹1,04,200. ₹25,300 stayed with you.*
 
-## Length
+## Default length
 
 - One or two short sentences before the artifact. Never a paragraph
 - Bold the figure that matters. Nothing else in bold
 - Never two figures in one sentence
-- No headings inside a reply. No emoji
 - If the answer needs more than one screen, it is not one answer
+
+## Formatting palette
+
+The renderer supports more than plain text. **The default stays plain.** Reach for an element only
+when the row below is met, never to decorate.
+
+| Element | Use only when |
+|---|---|
+| Bold | One figure that matters, once |
+| Italic, underline, strikethrough | A term being defined, a correction, a superseded figure |
+| Headings | Full-screen views only. **Never inside a chat reply** |
+| Blockquote | Quoting the customer's own words back, or a lender's exact wording |
+| Bulleted list | Three or more parallel items that are not figures |
+| Nested list | Steps with sub-steps. Two levels maximum |
+| Table | Side-by-side comparison of three or more things. Not for a single record |
+| Comparison view | Two options weighed against each other |
+| Callout | A rule, a permission, a warning tied to a real date |
+| Highlighted text | One phrase the customer must not miss |
+| Image carousel | Documents, a scanned page, anything the customer sent |
+| Video carousel and video embed | Explainer content. Thumbnail and length shown before it plays |
+| Link | Only where it leaves the app, and say that it does |
+| CTA button | One per reply. Starts with a verb |
+| File download | A document the customer can keep — statement, report, agreement |
+| Share | Any reply or artifact worth keeping. Amounts are rounded when shared |
+
+**The table rule.** A table compares. It never presents one record — that is an artifact's job. The
+repayment schedule remains the only table an artifact may contain.
+
+**Emoji.** Permitted in question nudges only, where the design calls for the emoji variant. Never in
+body text, never in an artifact, never in a failure reply.
 
 ## Answer the question asked, then offer the next one
 
@@ -41,6 +70,12 @@ Offer the next one. One at a time.
 - Two or three, phrased the way the customer would say them
 - Generated from what was just answered, never a fixed menu
 - Never offer one that cannot be answered
+- Rendered as nudges above the input box
+
+## Entry points behave like questions
+
+A tap on a section entry — loans, income, reminders, credit score — produces an intent and runs the
+same chain. It does not open a separate screen with its own rules.
 
 ## Disclosure
 
@@ -59,6 +94,12 @@ comparison favours a competitor.
 | Low confidence | What would settle it · offer a person |
 | Load failed | What failed, in plain words. Never a code. Never lose what they typed |
 | No internet | Question saved, sends later. Old threads stay readable |
+
+## Voice input
+
+Show the transcript before acting on it. Where the message contains an amount, a date or a lender
+name, the customer confirms the transcript first. Below the confidence floor, ask again rather than
+guessing.
 
 ## Failure replies
 

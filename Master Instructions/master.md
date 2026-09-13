@@ -81,21 +81,48 @@ Response  → { text, artifact | null, follow_ups }
 | `artifacts.md` | The catalogue. A lookup table, not an instruction file | Admin |
 | `copy-deck.md` | Fixed strings, three languages | Admin + compliance |
 | `data-contracts.md` | Fields, types, missing-field behaviour | Engineering |
+| `interface.md` | Screens and elements to be designed. Inventory, not behaviour | Design |
 
 **Admin-editable** means product or ops changes it in the application, without a release.
+
+## How a customer reaches the assistant
+
+- **Typing**, and **voice** — a spoken message is transcribed, shown back, and confirmed before it
+  is acted on where it carries an amount, a date or a lender name
+- **Camera, file and image upload** — a photo of a document, a forwarded message, a statement
+- **Section entry points** — loans, income, reminders, credit score. A tap produces an intent and
+  runs the same chain. It does not open a screen with separate rules
+
+## Onboarding is fixed and carries no permissions
+
+Splash → language → walkthrough → mobile and OTP → occupation. Nothing else belongs there.
+
+**No connector is requested during onboarding.** Every permission is asked for later, in the
+thread, at the moment a question needs it. A customer who connects nothing must still get a useful
+first session.
 
 ## Data availability
 
 Available from the first session: **SMS, credit bureau, account aggregator.** QR settlement,
-DigiLocker and the season calendar connect only when a question first needs them. Check
+DigiLocker, location and the season calendar connect only when a question first needs them. Check
 availability every time. Never assume a connector is live because it is listed.
+
+## Always reachable, never only through the assistant
+
+Key Facts Statement, sanction letter and loan agreement · grievance officer · ombudsman escalation ·
+how to withdraw a consent · how to delete the account.
+
+Each needs its own surface. A customer who cannot get an answer from the assistant must still reach
+all of these.
 
 ## Open positions
 
 1. **Subscription tier is not checked anywhere in this chain.** Until a decision is made, every
    connector is treated as available to every customer.
-2. **Primary input channel is unconfirmed** — typing or voice. The answer changes how urgent the
-   Indic speech vendor gap is.
+2. **Both typing and voice ship.** Which is primary is still unconfirmed, and that answer sets how
+   urgent the Indic speech vendor gap is.
+3. **Dark mode doubles the design surface** across every artifact and chat element. In or out of
+   the first release is undecided.
 
 ## Document control
 
@@ -104,3 +131,4 @@ availability every time. Never assume a connector is live because it is listed.
 | 1.0 | Multi-agent architecture. File map, chain, handoff contract |
 | 2.0 | Artifact catalogue reconciled. Data-availability rule added |
 | 3.0 | Rewritten to the lean standard. Connector and source split by ownership of the data. Picking, writing and failure clubbed into one response agent. Score rules separated |
+| 3.1 | Onboarding fixed and cleared of permissions. Connect journeys defined per connector. Input channels named. Formatting palette added. Screen inventory separated into `interface.md` |

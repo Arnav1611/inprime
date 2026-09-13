@@ -41,6 +41,20 @@ Each action carries three things:
 
 Ordered by what moves the score most, not by what is easiest.
 
+## When the bureau has just been connected
+
+The score is shown as soon as it lands, without being asked for again. That is the end of the
+connect journey, not a new question.
+
+Where no record comes back, say so plainly and say what builds one. A thin file is the expected
+outcome for many customers here, not an error.
+
+## Explainer content
+
+"Why does this affect my score" is answered from the explainer library, as a video with its
+thumbnail and length shown before it plays. It explains the concept. It never reads the customer's
+own report.
+
 ## Bands
 
 Roughly 700 and above reads as good. State the band and what it unlocks. Do not imply a band

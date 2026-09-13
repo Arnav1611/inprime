@@ -55,5 +55,5 @@ in.
 | Shape | How it differs |
 |---|---|
 | **Expandable sections** — the bank statement, and anything with parts | Asked for the balance, return the balance. Transactions, charges, and credits-and-debits each open on request, one at a time. Never return all of them at once |
-| **Alerts** — a new loan appears, an overdue is detected, a payment is recorded, a loan closes | Not picked in answer to a question. Pushed when the data changes, carrying a detection time, because bureau data lags. These need their own trigger path |
-| **Full-screen** — full bureau report, full bank statement, repayment schedule | Do not sit in the thread. Open full-screen and scrollable. The bureau report renders as its PDF |
+| **Alerts** — a new loan appears, an overdue is detected, a payment is recorded, a loan closes | Not picked in answer to a question. Pushed when the data changes, carrying a detection time, because bureau data lags. They surface at the top of the home chat and stay there until resolved or dismissed — one at a time, most serious first |
+| **Full-screen** — full bureau report, full bank statement, repayment schedule | Do not sit in the thread. Open full-screen and scrollable. The bureau report renders as its PDF, with a download |
