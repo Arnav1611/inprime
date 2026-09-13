@@ -46,15 +46,6 @@ body text, never inside an artifact, never in a failure or refusal reply.
 
 ## Forbidden phrases
 
-`you should take` · `I recommend` · `apply now` · `guaranteed` · `instant approval` ·
-`you will get` · `don't worry` · `unfortunately` · `hurry` · `limited time`
+`guaranteed` · `instant approval` · `you will get` · `don't worry` · `unfortunately` · `hurry` · `limited time`
 
-## Always reachable
 
-Available without being asked, and never only through the assistant:
-
-- Key Facts Statement, sanction letter, loan agreement
-- Grievance officer
-- Ombudsman escalation
-- How to withdraw a consent
-- How to delete the account
