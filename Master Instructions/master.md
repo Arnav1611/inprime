@@ -44,8 +44,8 @@ if it came from the customer's account is the worst failure this system can prod
 
 ## Rules that bind every agent
 
-1. **No agent states a number it composed.** Connectors return values. Code renders them into the
-   artifact through the data contract.
+1. **No agent states a number it composed.** Connectors return values. Code places them into the
+   artifact.
 2. **No agent invents an artifact.** Pick from the catalogue, or pick none.
 3. **No agent guesses.** Below the confidence floor, the answer is a person.
 4. **Any agent may stop the chain.** A refusal, a connect prompt and a no-artifact answer are all
@@ -79,8 +79,6 @@ Response  → { text, artifact | null, follow_ups }
 | `voice.md` | Tone and language. Loaded by guardrail and response | Admin |
 | `score.md` | Credit-score rules. Loaded when the intent is score-related | Admin + compliance |
 | `artifacts.md` | The catalogue. A lookup table, not an instruction file | Admin |
-| `copy-deck.md` | Fixed strings, three languages | Admin + compliance |
-| `data-contracts.md` | Fields, types, missing-field behaviour | Engineering |
 | `interface.md` | Screens and elements to be designed. Inventory, not behaviour | Design |
 
 **Admin-editable** means product or ops changes it in the application, without a release.
@@ -132,3 +130,4 @@ all of these.
 | 2.0 | Artifact catalogue reconciled. Data-availability rule added |
 | 3.0 | Rewritten to the lean standard. Connector and source split by ownership of the data. Picking, writing and failure clubbed into one response agent. Score rules separated |
 | 3.1 | Onboarding fixed and cleared of permissions. Connect journeys defined per connector. Input channels named. Formatting palette added. Screen inventory separated into `interface.md` |
+| 3.2 | Field-level data contracts and the fixed-string copy deck removed from this set. Both are held outside it for now |
