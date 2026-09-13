@@ -121,13 +121,3 @@ all of these.
    urgent the Indic speech vendor gap is.
 3. **Dark mode doubles the design surface** across every artifact and chat element. In or out of
    the first release is undecided.
-
-## Document control
-
-| Version | What changed |
-|---|---|
-| 1.0 | Multi-agent architecture. File map, chain, handoff contract |
-| 2.0 | Artifact catalogue reconciled. Data-availability rule added |
-| 3.0 | Rewritten to the lean standard. Connector and source split by ownership of the data. Picking, writing and failure clubbed into one response agent. Score rules separated |
-| 3.1 | Onboarding fixed and cleared of permissions. Connect journeys defined per connector. Input channels named. Formatting palette added. Screen inventory separated into `interface.md` |
-| 3.2 | Field-level data contracts and the fixed-string copy deck removed from this set. Both are held outside it for now |
