@@ -58,4 +58,3 @@ consequence. Do not refuse at this stage to be safe.
 | Tone and wording | `voice.md` |
 | Whether the data is available | `connector.md` — a question can be in scope and still get a connect prompt. That is not a refusal |
 | Whether an artifact exists for it | `artifact-picker.md` — a text-only answer is not a refusal either |
-| Subscription tier | Not yet decided anywhere. Do not treat a paid feature as out of scope; it is a different signal and needs its own copy |
