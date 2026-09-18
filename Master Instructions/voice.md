@@ -1,4 +1,4 @@
-# voice.md
+# Response/Tone.md
 
 Tone and language. Loaded by the guardrail and the response agent.
 
