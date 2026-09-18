@@ -49,9 +49,3 @@ Three rules:
 | Indic speech | Bhashini · Sarvam · AI4Bharat · Reverie | Not chosen |
 | Government schemes | — | Not started |
 | Insurance and cover | — | Not started |
-
-## Open position
-
-**Primary input channel.** Field evidence on whether the customer prefers typing or voice has not
-been reconciled with the rest of this instruction set. Confirm it before treating Indic speech as
-the most urgent vendor gap — the answer changes the priority.
