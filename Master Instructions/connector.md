@@ -53,8 +53,6 @@ Never interpret. Never compose a sentence. Return values and gaps.
 - Offer to connect
 - Never continue with a partial answer dressed as a whole one
 
-> *I can check your GST returns — what you filed, what is pending, and how your turnover moved — if
-> you connect your GST.*
 
 ## Asking for a connector
 
@@ -94,11 +92,3 @@ Where the record itself is wrong — a loan that is not theirs, a wrong status �
 persistent alert, not a one-time line in a thread. It stays until resolved and routes to the
 dispute path.
 
-## Open positions
-
-1. **Three intents have no connector** — margin, government schemes, insurance cover. Each returns
-   "not connected". Do not build a fallback that answers them from general knowledge.
-2. **Subscription tier is not checked here.** Until decided, every connector is treated as
-   available to every customer.
-3. **What location is used for is undecided.** It is captured once and nothing currently reads it.
-   Name the use before asking for it.
