@@ -1,5 +1,8 @@
 # artifacts.md
 
+
+**THIS WILL BE UPDATED AFTER ARTIFACTS ARE FINALIZED**
+
 The catalogue. **A lookup table, not an instruction file** — load the row, not the file. Picking
 rules are in `artifact-picker.md`.
 
