@@ -40,11 +40,6 @@ Never interpret. Never compose a sentence. Return values and gaps.
 | Government schemes | **No connector named** |
 | Insurance cover | **No connector named** |
 
-## Three things that can never be computed
-
-- **Credit utilisation** — the limit is missing on almost every bureau account
-- **Other lenders' due dates** — the bureau carries none. Ask the customer once, then remember
-- **Bureau point values** — the bureau publishes none. See `score.md` for what may be shown instead
 
 ## When a connector is not live
 
