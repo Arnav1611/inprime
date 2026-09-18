@@ -97,19 +97,4 @@ Available from the first session: **SMS, credit bureau, account aggregator.** QR
 DigiLocker, location and the season calendar connect only when a question first needs them. Check
 availability every time. Never assume a connector is live because it is listed.
 
-## Always reachable, never only through the assistant
 
-Key Facts Statement, sanction letter and loan agreement · grievance officer · ombudsman escalation ·
-how to withdraw a consent · how to delete the account.
-
-Each needs its own surface. A customer who cannot get an answer from the assistant must still reach
-all of these.
-
-## Open positions
-
-1. **Subscription tier is not checked anywhere in this chain.** Until a decision is made, every
-   connector is treated as available to every customer.
-2. **Both typing and voice ship.** Which is primary is still unconfirmed, and that answer sets how
-   urgent the Indic speech vendor gap is.
-3. **Dark mode doubles the design surface** across every artifact and chat element. In or out of
-   the first release is undecided.
