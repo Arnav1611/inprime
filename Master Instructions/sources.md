@@ -35,25 +35,15 @@ Three rules:
 | Whether they qualify for anything | Needs their actual position |
 | A rupee figure of any kind about them | Only connectors produce figures |
 
-## Two gaps
 
-Both have artifacts in the catalogue. Neither has a home yet, in a connector or a source.
-
-| Gap | Needed by | Missing |
-|---|---|---|
-| **Government scheme data** | Scheme list — *"schemes I qualify for," "is there a cheaper government loan"* | Nothing holds scheme rules or eligibility. Needs a vendor or a maintained internal list |
-| **Insurance and cover data** | Cover card — *"do I have insurance," "am I covered for hospital"* | Nothing holds policy data. Possibly DigiLocker once populated — unconfirmed in practice |
-
-Until named, both return "not connected", never a guess from general knowledge.
-
-## Vendor stack
+## Vendor stack (pending)
 
 | Layer | Vendor | Status |
 |---|---|---|
-| Model | OpenAI API | Decided |
-| Credit bureau | CRIF B2B2C | Decided |
-| Account aggregator | Digitap | Decided |
-| SMS parsing | FinBox or Think360 | Not chosen |
+| Model | OpenAI API | - |
+| Credit bureau | CRIF  | - |
+| Account aggregator | Digitap | - |
+| SMS parsing | FinBox or Think360 | - |
 | DigiLocker | Digio · Signzy · Setu · Perfios · IDfy | Not chosen |
 | QR settlement | Acquirer or soundbox partner | Not started |
 | Indic speech | Bhashini · Sarvam · AI4Bharat · Reverie | Not chosen |
