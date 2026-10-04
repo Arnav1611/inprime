@@ -1,6 +1,6 @@
 # card-contracts.md
 
-One contract per card in the Artifacts Library (volume two), and for the home and system cards.
+One contract per card in the Artifacts Library (volume two), for the intelligent cards on landing, and for the new Day-0 products.
 Code reads a contract to fill a card. The model reads it to decide whether a card fits the question.
 Look up one contract at a time. Never load the whole file.
 
@@ -14,9 +14,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Conditions that must all be true before this card is chosen. |
 | Do not use when | Conditions that rule this card out. |
 | Partial or stale data | What to do when some data is missing or old. |
-| Actions and follow-ups | Buttons on the card and the follow-up questions to offer. |
-| Plan | Whether the card is free or counts against the free allowance. |
-| Status | Launch, or Held with the reason. |
+| Actions | Buttons on the card itself. |
+| Next nudges | The three quick-tap prompts shown above the chat box after this card. The Next-Nudge Engine generates them fresh each time; these are the defaults it starts from. |
+| Plan | Every card is free on Day 0. |
+| Status | Launch on Day 0, or the confirmed reason it is not on Day 0, or what is still to be confirmed. |
 | Figma | The card's label on the Artifacts Board. |
 
 ## Terms used in every calculation
@@ -24,20 +25,30 @@ Look up one contract at a time. Never load the whole file.
 | Term | Meaning |
 |---|---|
 | Percentage change | Subtract the earlier amount from the current amount. Divide the result by the earlier amount. Multiply by 100. Round to one decimal place. If the earlier amount is zero, do not show a percentage. |
-| Business credit | Money received from a customer of the shop: QR settlements, UPI payments and card machine settlements. Not salary, refunds, loan disbursals or transfers from the customer's own accounts. |
+| Business credit | Money received from a customer of the shop: QR settlements (read from SMS on Day 0), UPI payments and card machine settlements. Not salary, refunds, loan disbursals or transfers from the customer's own accounts. |
 | Own-account transfer | Money moved between two accounts that belong to the same customer. Never counted as money in or money out. |
 | Complete period | A day, week or month that has fully ended. A week runs Monday to Sunday. |
 | Same credit counted once | If a credit appears in both SMS and Account Aggregator with the same amount, date and reference, count it one time only. |
 | Rounding | Show rupee amounts as whole rupees with Indian digit grouping, for example ₹1,04,200. On shared cards, round to the nearest hundred. |
 
-## Plan rules (proposal until the commercial model is decided)
+## Day-0 decisions this file follows
 
-| Rule |
-|---|
-| Customers with an active InPrime loan get every card free. |
-| For everyone else, a card marked Allowance counts against their monthly free allowance when they ask for it. |
-| A card marked Free never counts against the allowance. |
-| A card shown on the home screen without being asked never counts against the allowance. |
+| Decision | What it means for the cards |
+|---|---|
+| Monetisation of any kind is out of scope for Day 0. | Every card is free. There is no plan card and no usage allowance. |
+| Answers are shaped to the question, with the cards that help it, or none. | An answer may show more than one card. Each card still answers one kind of question with fixed labels. |
+| Three next nudges sit above the chat box, generated fresh after every answer. | Each contract lists three default next nudges. Whenever advice would be relevant, one nudge invites the user to ask for it. |
+| Intelligent cards are the central cards shown when the user lands on the app. Day-0 scope: facts that are due or have changed. | The Day-0 intelligent cards are an upcoming or overdue EMI, the monthly report card, the most important bureau changes each month, and a reminder the user set. |
+| Unprompted advice is out of scope for Day 0. | Intelligent cards state facts. Advice comes only when the user asks, and nudges invite them to ask. |
+| The assistant recommends actions for the user's own money and business. It never strongly recommends another institution, and cites sources on industry comparisons. | Cards and answers may say what the user should do, for example clear an overdue. They never push the user towards a lender. |
+| An InPrime loan comes up only when a loan makes real sense for the user, or the user asks. | Product and eligibility cards are never the answer to a question about something else. Applications redirect to the InPrime website with the app recorded as the source. |
+| The bureau is refreshed once a month for every user who has connected it, and Bureau Alerts are replaced by the Monthly Bureau Update. | The four bureau change cards (15 to 18) ship on Day 0 inside the monthly update, most important change first. |
+| Day-0 data sources: SMS (including QR settlement messages), credit bureau, Account Aggregator, InPrime loan records, festival calendar, general business knowledge. | Location, DigiLocker, GST and settlement data direct from payment providers are not on Day 0. |
+| MDR questions and Document Check are answered from the model's general knowledge. Document Check also has its own dedicated option. | MDR is answered in text as general knowledge with a source. The actual charges a shop paid, from its own settlements, are not on Day 0. |
+| RO details are shared only when the user asks, or the conversation calls for it. Change requests are raised as service requests. | The RO card is never shown unprompted. Any change to customer details goes through the service request card. |
+| Shared versions hide amounts and personal details unless the user opts in, and carry the app identity and an install link. | Every share action on a card follows this rule. |
+| Dark mode ships on Day 0. | Every card must render correctly in light and dark. |
+
 
 ## Design conflict marker
 
@@ -57,9 +68,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Bank or SMS is connected. |
 | Do not use when | Nothing is connected. Show the connect sheet instead. |
 | Partial or stale data | If the comparison period has no data, hide the comparison row and the percentage.<br>Always say that cash sales are not included.<br>If only one of the customer's bank accounts is linked, label the card with how many accounts are included. |
-| Actions and follow-ups | Where did my money go?<br>When was I busiest?<br>Who paid me the most? |
-| Plan | Free when shown on the home screen.<br>Allowance when the customer asks for it. |
-| Status | Launch |
+| Actions | None |
+| Next nudges | Where did my money go?<br>When was I busiest?<br>Who paid me the most? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch inside the chat.<br>To confirm: whether income yesterday or today is also a Day-0 intelligent card on landing. The master document lists the Day-0 intelligent cards as an upcoming or overdue EMI, the monthly report card, the most important bureau changes each month, and a reminder the user set. |
 | Figma | 1a · Income card - yesterday<br>1b · Income card - this week<br>1c · Income card - this month |
 
 ---
@@ -74,8 +86,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least two months of bank history are available. |
 | Do not use when | Less than two months of bank history.<br>Only SMS is connected. |
 | Partial or stale data | Never guess a payment that has not been seen at least twice. Say "only payments seen twice or more are included". |
-| Actions and follow-ups | Will my balance cover it?<br>Remind me before the rent |
-| Plan | Allowance |
+| Actions | This week and this month switch |
+| Next nudges | Will my balance cover it?<br>Remind me before the rent<br>Which supplier costs me most? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 2 · Planned outflow |
 
@@ -91,8 +104,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least ten credits in the period have a payer name. |
 | Do not use when | Most credits have no payer name, for example only daily QR settlements. |
 | Partial or stale data | Credits without a payer name go into "Everyone else". |
-| Actions and follow-ups | Who stopped paying me?<br>Who do I pay the most? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | Who stopped paying me?<br>Who do I pay the most?<br>Where does my money come from? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 3 · Top payers |
 
@@ -108,8 +122,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least five debits in the period have a payee name. |
 | Do not use when | Only SMS is connected. |
 | Partial or stale data | Debits without a payee name go into "Everyone else". |
-| Actions and follow-ups | Show my supplier payments<br>Where did my money go? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | Show my supplier payments<br>Where did my money go?<br>Who pays me the most? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 4 · Top payees |
 
@@ -127,8 +142,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Account Aggregator is connected. |
 | Do not use when | Only SMS is connected. SMS does not give a reliable balance. |
 | Partial or stale data | Always show the "as on" date and time.<br>If the balance is more than two days old, say it may have changed. |
-| Actions and follow-ups | Show recent transactions<br>What charges did the bank take? |
-| Plan | Free |
+| Actions | None |
+| Next nudges | Show recent transactions<br>What charges did the bank take?<br>Will my balance cover my EMI? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 5 · Balance card |
 
@@ -144,8 +160,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | There is at least one transaction in the last seven days. |
 | Do not use when | No transactions in seven days. Answer in text instead. |
 | Partial or stale data | Show where the data came from and when it was read. |
-| Actions and follow-ups | Show full statement<br>Why was money deducted? |
-| Plan | Free |
+| Actions | Show full statement |
+| Next nudges | Why was money deducted?<br>What came in this week?<br>Show my full statement |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 6 · Recent transactions |
 
@@ -161,8 +178,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | There is at least one charge in the last ninety days. |
 | Do not use when | There are no charges. Answer in text: "No bank charges in the last 90 days." |
 | Partial or stale data | If the type of a charge is not recognised, show the bank's own description exactly as given. |
-| Actions and follow-ups | How do I avoid the bounce charge?<br>Show my statement |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | How do I avoid the bounce charge?<br>Show my statement<br>What is my balance? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 7 · Bank charges |
 
@@ -178,8 +196,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least seven days of bank data are available. |
 | Do not use when | Only SMS is connected, because SMS misses many debits. |
 | Partial or stale data | If the month is not complete, show the dates covered and leave out the comparison. |
-| Actions and follow-ups | Where did my money go?<br>Where did it come from? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | Where did my money go?<br>Where did it come from?<br>How does this compare to last month? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 8 · In and out totals |
 
@@ -194,9 +213,10 @@ Look up one contract at a time. Never load the whole file.
 | Calculation | Include only money that has actually settled into the bank.<br>Add up settlements for each payment app for the month.<br>Share for each app: divide that app's total by the total of all apps and multiply by 100.<br>The shares must add up to one hundred. |
 | Use when | Settlements come from two or more payment apps. |
 | Do not use when | Only one payment app is used. Answer in text instead. |
-| Partial or stale data | Settlements from an app that is not recognised go under "Other UPI apps". |
-| Actions and follow-ups | When was I busiest?<br>What do payments cost me? |
-| Plan | Allowance |
+| Partial or stale data | The nudge "What do UPI payments cost a shop?" is answered as general knowledge with a source. The actual MDR and charges the shop paid, per app and per month, are not on Day 0: they are on the Roadmap, held back by settlement-level data reliable enough to compute charges.<br>Settlements from an app that is not recognised go under "Other UPI apps". |
+| Actions | None |
+| Next nudges | When was I busiest?<br>What do UPI payments cost a shop?<br>Who paid me the most? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-42 · Where it came from |
 
@@ -212,8 +232,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least two named suppliers were paid in the last thirty days. |
 | Do not use when | Payments cannot be matched to a supplier. Those stay in Top payees. |
 | Partial or stale data | If it is not clear that a payee is a supplier, leave them out of this card. |
-| Actions and follow-ups | Did I pay Adarsh this month?<br>What is planned this month? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | Did I pay Adarsh this month?<br>What is planned this month?<br>Who do I pay the most? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 9 · Supplier payments |
 
@@ -231,8 +252,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least four complete periods exist for the chosen view. |
 | Do not use when | Fewer than four complete periods. Use the Income card instead. |
 | Partial or stale data | Never chart the current period while it is still in progress. |
-| Actions and follow-ups | Switch between day, week and month<br>Why was that week so strong? |
-| Plan | Allowance |
+| Actions | Day, week and month switch |
+| Next nudges | Why was that week so strong?<br>Where did my money go?<br>How is this month going? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 10 · Money in - trend |
 
@@ -248,8 +270,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least four complete periods exist for the chosen view. |
 | Do not use when | Only SMS is connected. |
 | Partial or stale data | Never chart the current period while it is still in progress. |
-| Actions and follow-ups | Where did my money go? |
-| Plan | Allowance |
+| Actions | Day, week and month switch |
+| Next nudges | Where did my money go?<br>What is planned this month?<br>How does money in compare? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 11 · Money out - trend |
 
@@ -265,8 +288,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least seven days of data, with payments recorded one by one. |
 | Do not use when | Payments arrive only as one daily settlement, because the count would be wrong. |
 | Partial or stale data | Never chart the current period while it is still in progress. |
-| Actions and follow-ups | When was I busiest? |
-| Plan | Allowance |
+| Actions | Day, week and month switch |
+| Next nudges | When was I busiest?<br>Who paid me the most?<br>How is money coming in this week? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 12 · Business transactions - trend |
 
@@ -282,8 +306,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least three complete months of balances are available. |
 | Do not use when | Fewer than three complete months. |
 | Partial or stale data | Always say this is a monthly average, not today's balance. |
-| Actions and follow-ups | What is my balance today? |
-| Plan | Allowance |
+| Actions | Day, week and month switch |
+| Next nudges | What is my balance today?<br>Will a lender look at this?<br>How do I keep my balance higher? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 13 · Average balance trend |
 
@@ -299,8 +324,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The account has received interest credits. |
 | Do not use when | No interest credits, for example a current account. Answer in text instead. |
 | Partial or stale data | If fewer than four quarters exist, show only the ones that do. |
-| Actions and follow-ups | What is my average balance? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | What is my average balance?<br>What is my balance today?<br>Show recent transactions |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 14 · Interest earned |
 
@@ -316,8 +342,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer asks for the statement directly, or taps "Show full statement" on Recent transactions. |
 | Do not use when | The customer asked a narrower question. Answer that first. |
 | Partial or stale data | Show only the date range that is actually available, and say so. |
-| Actions and follow-ups | Choose period<br>Filter money in or money out<br>Download |
-| Plan | Free |
+| Actions | Choose period<br>Filter money in or money out<br>Download |
+| Next nudges | Why was money deducted?<br>Where did my money go?<br>What came in this month? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch. This is a full screen, not a card. |
 | Figma | BS-01 · Bank statement - full view |
 
@@ -335,9 +362,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer's location is known. |
 | Do not use when | Location is unknown. Use state-level festivals and say so. |
 | Partial or stale data | With less than twelve months of sales data, show the dates only and leave out the percentages. |
-| Actions and follow-ups | How much should I stock?<br>Remind me |
-| Plan | Allowance |
-| Status | Held. Needs twelve months of sales data. |
+| Actions | Share this calendar (amounts hidden)<br>Remind me |
+| Next nudges | How much should I stock?<br>Remind me before the festival<br>Share this calendar |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. The festival calendar is useful with nothing connected. Last year's figures for the festival week are shown only when the user's own sales data exists. |
 | Figma | B-40 · Festival list |
 
 ---
@@ -352,9 +380,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Supplier spending is available for last year's festival. |
 | Do not use when | No supplier history. |
 | Partial or stale data | Always label the plan as an estimate. |
-| Actions and follow-ups | Will my balance cover it?<br>Remind me |
-| Plan | Allowance |
-| Status | Held. Needs twelve months of sales data. |
+| Actions | Remind me |
+| Next nudges | Will my balance cover it?<br>Remind me before the cash is needed<br>What is planned this month? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Shown only when the user's own sales data exists, and always labelled an estimate. |
 | Figma | B-41 · Stock plan |
 
 ---
@@ -371,10 +400,11 @@ Look up one contract at a time. Never load the whole file.
 | Use when | A new loan is found. |
 | Do not use when | This is the customer's first bureau report, because every loan would look new. |
 | Partial or stale data | Always show the date the bureau reported it. |
-| Actions and follow-ups | This one is mine<br>I did not take this |
-| Plan | Free |
-| Status | Held. The change watcher is not built. |
-| Figma | 15 · New loan detected<br>Design conflict: The design says "we will raise a dispute with CRIF for you". No dispute path exists yet. Raise a request and offer a person instead. |
+| Actions | This one is mine<br>I did not take this |
+| Next nudges | How do I raise a dispute?<br>Who checked my credit?<br>Will this affect my score? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Part of the Monthly Bureau Update: the bureau is refreshed once a month for every user who has connected it, and changes are shown most important first. |
+| Figma | 15 · New loan detected<br>Design conflict: The design says "we will raise a dispute with CRIF for you". Raising and tracking a bureau dispute in the app is not on Day 0; it is on the Roadmap. On Day 0, explain how to raise a dispute directly with the credit bureau and with the lender, as general knowledge with the source cited, and offer a person. |
 
 ---
 
@@ -388,10 +418,11 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Any loan shows an overdue amount. |
 | Do not use when | No loan is overdue. |
 | Partial or stale data | Always show the date of the bureau report.<br>Say: "If you have already paid, it can take up to 45 days for the report to update." |
-| Actions and follow-ups | Pay now, only for an InPrime loan<br>I already paid |
-| Plan | Free |
-| Status | Held. The change watcher is not built. |
-| Figma | 16 · Overdue detected<br>Design conflict: The design shows "Pay ₹550 now" on a Muthoot loan. We cannot take payment for another lender's loan.<br>Design conflict: The design shows a "next reported to bureau" date. No data source gives this date. |
+| Actions | Pay now, only for an InPrime loan<br>I already paid |
+| Next nudges | What happens if I pay late?<br>Why did my score drop?<br>Remind me before the next due date |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Part of the Monthly Bureau Update. |
+| Figma | 16 · Overdue detected<br>Design conflict: The design shows "Pay ₹550 now" on a Muthoot loan. Paying other lenders' EMIs from the chat is not on Day 0; it is on the Roadmap. On Day 0 the Pay button appears only on InPrime loans.<br>Design conflict: The design shows a "next reported to bureau" date. No data source gives this date. |
 
 ---
 
@@ -405,9 +436,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Payment history is present in the bureau report. Expect this for only about 16 percent of accounts. |
 | Do not use when | No payment history is reported. |
 | Partial or stale data | If a lender has no status for the cycle, show "Not reported yet". |
-| Actions and follow-ups | Why has nothing changed? |
-| Plan | Free |
-| Status | Held. The change watcher is not built. |
+| Actions | None |
+| Next nudges | Why has nothing changed?<br>What is my score now?<br>Show my loans and cards |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Part of the Monthly Bureau Update. |
 | Figma | 17 · Repayments marked |
 
 ---
@@ -422,9 +454,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | A loan's status has changed to closed. |
 | Do not use when | The loan is still open. |
 | Partial or stale data | If total repaid is missing, hide that row. |
-| Actions and follow-ups | Ask for the No Objection Certificate. For an InPrime loan, raise a request. |
-| Plan | Free |
-| Status | Held. The change watcher is not built. |
+| Actions | Ask for the No Objection Certificate. For an InPrime loan, raise a service request. |
+| Next nudges | Is my score affected?<br>Show my closed loans<br>What is on my report now? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Part of the Monthly Bureau Update. |
 | Figma | 18 · Loan closed |
 
 ---
@@ -441,8 +474,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The score has changed since the previous report. |
 | Do not use when | This is the first report. Show the score without a change. |
 | Partial or stale data | Always show the date the score was updated. |
-| Actions and follow-ups | See what moved it<br>When will my score go back up?<br>Should I hold off on applying? |
-| Plan | Free |
+| Actions | None |
+| Next nudges | See what moved it<br>When will my score go back up?<br>Should I hold off on applying? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-43 · Score drop |
 
@@ -458,8 +492,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The score is below its last high, or the customer asks how to improve it. |
 | Do not use when | There is no bureau report. |
 | Partial or stale data | Always label any target as an estimate. |
-| Actions and follow-ups | Remind me on the date<br>How long will it take? |
-| Plan | Free |
+| Actions | Remind me on the date |
+| Next nudges | How long will it take?<br>What is pulling my score down?<br>Show my score over time |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch after the design is fixed. |
 | Figma | 19 · Score improvement plan<br>Design conflict: The design shows points for each action (+14, +6, +3) and a target score of 772. Point figures are not allowed before compliance review. Show the actions and dates only. |
 
@@ -475,8 +510,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least three bureau reports exist. |
 | Do not use when | Fewer than three reports. Two points are not a trend. |
 | Partial or stale data | None. |
-| Actions and follow-ups | What is left to do? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | What is left to do?<br>Why did my score drop?<br>Remind me of my next step |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch after the design is fixed. |
 | Figma | B-19b · Score journey chart<br>Design conflict: The design says "+23 points to reach 772". Remove point figures until compliance review. |
 
@@ -492,9 +528,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The question matches the video's topic.<br>The video is returned beside the text answer. |
 | Do not use when | It would replace the answer instead of adding to it.<br>The customer watched it in the last thirty days.<br>There is no version in the customer's language. |
 | Partial or stale data | None. |
-| Actions and follow-ups | Play |
-| Plan | Free |
-| Status | Held. Videos not produced yet. |
+| Actions | Play |
+| Next nudges | Not applicable on Day 0 |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Not on Day 0. Credit score explainer videos are on the Roadmap: four short videos (score, payments, enquiries, recovery) in three languages, shown only when relevant. Held back by video production, each video with a stated reason for existing. |
 | Figma | 20 · Explainer video |
 
 ---
@@ -509,8 +546,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The bureau is connected. |
 | Do not use when | There is no report. |
 | Partial or stale data | Always show the report date. |
-| Actions and follow-ups | Open the full report<br>Send me the report as PDF |
-| Plan | Free |
+| Actions | Open the full report<br>Send me the report as PDF |
+| Next nudges | Who checked my credit?<br>Show my loans and cards<br>Why is my score not higher? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 21 · Full report entry point |
 
@@ -526,8 +564,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer asks about bands, or taps the score meter. |
 | Do not use when | There is no score. |
 | Partial or stale data | None. |
-| Actions and follow-ups | Okay, got it |
-| Plan | Free |
+| Actions | Okay, got it |
+| Next nudges | How do I reach the next band?<br>Why is my score not higher?<br>What is my score? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-39 · Band ladder (sheet) |
 
@@ -535,19 +574,20 @@ Look up one contract at a time. Never load the whole file.
 
 ## G · Your InPrime loan
 
-### 22 · Relationship manager
+### 22 · RO details (relationship manager)
 
 | Field | Details |
 |---|---|
-| Answers | Who is handling my loan?<br>Who do I call?<br>I want to talk to someone |
-| Fields and sources | Manager name, branch, phone number and office hours, from InPrime records |
+| Answers | Who is my RO?<br>Who is handling my loan?<br>I want to talk to someone about my loan |
+| Fields and sources | RO name, branch, phone number and office hours, from InPrime records |
 | Calculation | None. |
-| Use when | The customer has an InPrime loan with an assigned relationship manager. |
-| Do not use when | No manager is assigned. Offer a callback request only. |
-| Partial or stale data | Outside office hours, offer a callback instead of a call. |
-| Actions and follow-ups | Ask for a callback<br>Call |
-| Plan | Free |
-| Status | Launch |
+| Use when | The customer has an InPrime loan and explicitly asks for their RO, or the conversation calls for it, for example a hardship or an overdue they want to discuss. |
+| Do not use when | The customer has not asked and the conversation does not call for it. Never shown unprompted.<br>The customer has no InPrime loan. |
+| Partial or stale data | No RO assigned: say so and offer the human escalation path.<br>Outside office hours: show the hours with the call option. |
+| Actions | Call |
+| Next nudges | Show my loan details<br>When is my next EMI?<br>Update my details |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. RO details are shared only when the user asks for their RO, or when the conversation calls for it, with an option to call.<br>To confirm: whether a callback request is also offered. The master document lists only the option to call. |
 | Figma | 22 · Relationship manager |
 
 ---
@@ -562,8 +602,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer has an application. |
 | Do not use when | There is no application. |
 | Partial or stale data | If the current stage is unknown, show the last known stage with its date. |
-| Actions and follow-ups | Why was I rejected?<br>When is my first EMI? |
-| Plan | Free |
+| Actions | None |
+| Next nudges | Why was I rejected?<br>When is my first EMI?<br>When does the money come? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 23 · Application status<br>23b · Application status - the other three states |
 
@@ -576,11 +617,12 @@ Look up one contract at a time. Never load the whole file.
 | Answers | How much more can I borrow?<br>Can I get a top-up?<br>What is my limit? |
 | Fields and sources | Indicative amount, rate and tenure, from credit policy rules<br>Amount already applied for, from InPrime records |
 | Calculation | Indicative amount: as given by the credit policy rules for this customer.<br>EMI: use the EMI formula in B-38 with that amount, rate and tenure.<br>If part of the amount is already applied for, say how much. |
-| Use when | An InPrime customer asks about borrowing more. |
-| Do not use when | The customer has an overdue.<br>It would be shown without being asked. |
+| Use when | An InPrime customer asks about borrowing more, or a loan makes real sense for what they are dealing with. |
+| Do not use when | The customer has an overdue.<br>It would be the answer to a question about something else. |
 | Partial or stale data | Always label it "Indication only". Never call it an approval. |
-| Actions and follow-ups | See my top-up application<br>What would my EMI be? |
-| Plan | Free |
+| Actions | See my top-up application |
+| Next nudges | What would my EMI be?<br>Which InPrime loan fits me?<br>How do I apply? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 24 · Next loan eligibility |
 
@@ -596,8 +638,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer has an active InPrime loan. |
 | Do not use when | No active InPrime loan. |
 | Partial or stale data | If the records are more than 24 hours old, show when they were read. |
-| Actions and follow-ups | Show my schedule<br>Show closed loans |
-| Plan | Free |
+| Actions | None |
+| Next nudges | Show my schedule<br>Show closed loans<br>When is my next EMI? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 25 · Active InPrime loans |
 
@@ -613,8 +656,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer has an active InPrime loan. |
 | Do not use when | No active InPrime loan. |
 | Partial or stale data | If auto-pay status is unknown, hide the auto-pay line. |
-| Actions and follow-ups | Show schedule<br>Download statement |
-| Plan | Free |
+| Actions | Download statement |
+| Next nudges | Show my schedule<br>What has this loan cost me so far?<br>When is my next EMI? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-37 · Loan details |
 
@@ -632,8 +676,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The bureau is connected. |
 | Do not use when | No loans are found. Answer in text instead. |
 | Partial or stale data | Mark any EMI the customer told us as "you told us".<br>Keep closed loans collapsed until asked. |
-| Actions and follow-ups | Which loan is most expensive?<br>Show closed loans |
-| Plan | Free |
+| Actions | Show closed loans |
+| Next nudges | What will these loans cost me in total?<br>How much am I paying every month?<br>Who checked my credit? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-36 · All my loans |
 
@@ -649,9 +694,10 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The rate is known or can be worked out for at least two loans. |
 | Do not use when | Any loan's rate is unknown and cannot be worked out. |
 | Partial or stale data | Show where each rate came from. |
-| Actions and follow-ups | Show me the maths<br>Remind me monthly |
-| Plan | Allowance |
-| Status | Held. Waiting for the legal position on comparative advice. |
+| Actions | Show me the maths |
+| Next nudges | Not applicable on Day 0 |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Not on Day 0. "Which loan to clear first" is on the Roadmap: the real cost of each loan and the saving from clearing it, across every lender. Held back by legal sign-off on comparative advice. |
 | Figma | B-33 · Rate list |
 
 ---
@@ -666,8 +712,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The remaining tenure is known for each loan. |
 | Do not use when | A loan pays interest only with no end date. Show its monthly interest instead. |
 | Partial or stale data | If a loan's data is missing, name the loan and leave it out of the total. |
-| Actions and follow-ups | Which one is really costing me most? |
-| Plan | Allowance |
+| Actions | None |
+| Next nudges | What has my InPrime loan cost so far?<br>What if I close a loan early?<br>How much am I paying every month? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-34 · Interest over the term |
 
@@ -683,8 +730,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The loan is an InPrime loan, or another loan whose full terms are known. |
 | Do not use when | The loan's terms are incomplete. |
 | Partial or stale data | None. |
-| Actions and follow-ups | What if I close it early? |
-| Plan | Free |
+| Actions | None |
+| Next nudges | What if I close it early?<br>How much is left to pay?<br>Show my schedule |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-35 · Interest split |
 
@@ -702,8 +750,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer has an active InPrime loan. |
 | Do not use when | No active InPrime loan. |
 | Partial or stale data | If the records are more than 24 hours old, show when they were read. |
-| Actions and follow-ups | Show all instalments |
-| Plan | Free |
+| Actions | Show all instalments |
+| Next nudges | When is my next EMI?<br>Download my statement<br>Update my details |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 26 · Loan details and schedule |
 
@@ -719,8 +768,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | An EMI is coming up. |
 | Do not use when | An EMI is overdue. Use card 29 instead. |
 | Partial or stale data | If mandate status is unknown, say "check your auto-pay". |
-| Actions and follow-ups | Pay through BBPS instead<br>Remind me |
-| Plan | Free |
+| Actions | Pay through BBPS instead<br>Remind me |
+| Next nudges | Will my balance cover it?<br>Is auto-pay on?<br>Show my schedule |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 27 · Next repayment |
 
@@ -736,8 +786,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | At least one payment has been made. |
 | Do not use when | No payment has been made yet. |
 | Partial or stale data | If a payment is still processing, say "processing", never "paid". |
-| Actions and follow-ups | Download receipt |
-| Plan | Free |
+| Actions | Download receipt |
+| Next nudges | When is my next EMI?<br>Show my schedule<br>How much is left to pay? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 28 · Last repayment |
 
@@ -753,8 +804,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer has an overdue InPrime EMI. |
 | Do not use when | No overdue. |
 | Partial or stale data | If a charge has not been confirmed yet, show it as "may apply". |
-| Actions and follow-ups | Pay the amount, after confirming it with the customer<br>Talk to my relationship manager |
-| Plan | Free |
+| Actions | Pay the amount, after confirming it with the customer<br>Show my RO's details |
+| Next nudges | What happens if I pay late?<br>Why did my EMI bounce?<br>Remind me before the next due date |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch after the design is fixed. |
 | Figma | 29 · InPrime loan overdue<br>Design conflict: The design says "your score drops by about 40 points". No point figures. Say the payment will be reported to the bureau as missed. |
 
@@ -769,11 +821,12 @@ Look up one contract at a time. Never load the whole file.
 | Answers | What loans do you give?<br>Which one is right for me?<br>What is a Winner Loan? |
 | Fields and sources | Name, who it is for, amount range, tenure and use, from the product catalogue<br>Whether it is open to this customer, from InPrime records |
 | Calculation | None. |
-| Use when | The customer asks about a product. |
-| Do not use when | The customer is worried about money and has not asked about loans.<br>The customer has an overdue. |
+| Use when | The customer asks about a product, or a loan makes real sense for what they are dealing with. |
+| Do not use when | It would be the answer to a question about something else.<br>The customer has an overdue. |
 | Partial or stale data | Star Loan shows "Coming soon" with no apply option. |
-| Actions and follow-ups | Which one is right for me?<br>Check what I qualify for |
-| Plan | Free |
+| Actions | Check what I qualify for |
+| Next nudges | Which one is right for me?<br>What would my EMI be?<br>How do I apply? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch. Star Loan is coming soon. |
 | Figma | 30a · Smart Loan - product card<br>30b · Super Loan - product card<br>30c · Welcome Loan - product card<br>30d · Winner Loan - product card<br>30e · Star Loan - product card |
 
@@ -789,8 +842,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer asks to compare InPrime loans. |
 | Do not use when | The customer has not asked about loans. |
 | Partial or stale data | If nothing is connected, show the products without fit labels. |
-| Actions and follow-ups | Apply<br>What would my EMI be? |
-| Plan | Free |
+| Actions | Apply |
+| Next nudges | What would my EMI be?<br>Check what I qualify for<br>What documents do I need? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 31 · Compare products<br>Design conflict: "Which loan should I take?" must be answered by explaining fit, never by recommending that the customer borrow. |
 
@@ -806,8 +860,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer asks to apply. |
 | Do not use when | The customer has not asked to apply. |
 | Partial or stale data | If the website is down, offer a callback. |
-| Actions and follow-ups | Apply on inprime.in. Pass the app as the source. |
-| Plan | Free |
+| Actions | Apply on inprime.in. Pass the app as the source. |
+| Next nudges | What documents do I need?<br>What would my EMI be?<br>Which InPrime loan fits me? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 32 · Apply entry point |
 
@@ -823,16 +878,17 @@ Look up one contract at a time. Never load the whole file.
 | Use when | The customer asks about an EMI or what they can afford. |
 | Do not use when | It would be shown to encourage borrowing. |
 | Partial or stale data | Always label the result an estimate. The final rate is set after the credit check. |
-| Actions and follow-ups | Check what I qualify for |
-| Plan | Free |
+| Actions | Check what I qualify for |
+| Next nudges | Which InPrime loan fits this?<br>What if I pay it off early?<br>How do I apply? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | B-38 · EMI Calculator |
 
 ---
 
-## K · Home and system cards (outside the library board)
+## K · Intelligent cards on landing, and system cards
 
-### Next EMI — home card
+### Next EMI — intelligent card
 
 | Field | Details |
 |---|---|
@@ -842,8 +898,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | An InPrime EMI is due within seven days and auto-pay is on. |
 | Do not use when | An EMI is overdue, or auto-pay is off. |
 | Partial or stale data | If auto-pay status is unknown, hide the auto-pay line. |
-| Actions and follow-ups | Will my balance cover it?<br>How did my shop do this month? |
-| Plan | Free |
+| Actions | Remind me |
+| Next nudges | Will my balance cover it?<br>How did my shop do this month?<br>Show my schedule |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | O-07 · Home — composer + deck<br>OB-W1 |
 
@@ -859,8 +916,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Auto-pay is off or cancelled and the EMI is due within three days. |
 | Do not use when | Auto-pay is on.<br>The EMI is already paid. |
 | Partial or stale data | If auto-pay status is unknown, treat the EMI as not covered and say so. |
-| Actions and follow-ups | Remind me<br>Pay now |
-| Plan | Free |
+| Actions | Remind me<br>Pay now |
+| Next nudges | Will my balance cover it?<br>How do I turn on auto-pay?<br>Show my schedule |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | H-02 · Home — EMI due, not covered |
 
@@ -876,8 +934,9 @@ Look up one contract at a time. Never load the whole file.
 | Use when | Any tier 1, 2 or 3 item exists. |
 | Do not use when | Only score changes, offers or festival notes exist. These never go in the banner. |
 | Partial or stale data | A bureau overdue shows its report date.<br>When the last overdue clears, turn the banner green for the rest of the session. |
-| Actions and follow-ups | Tap to open the answer with the payment action |
-| Plan | Free |
+| Actions | Tap to open the answer with the payment action |
+| Next nudges | Come from the answer the banner opens |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | BN-01 to BN-08<br>H-01 · Home — two loans overdue |
 
@@ -888,46 +947,141 @@ Look up one contract at a time. Never load the whole file.
 | Field | Details |
 |---|---|
 | Answers | Any question that needs data the customer has not connected |
-| Fields and sources | Connector name, why it is needed, what it reads, and the provider line |
+| Fields and sources | Connector name, why it is needed, what it unlocks, what it reads, and the provider line<br>Day-0 connectors: InPrime loan records, credit bureau, Account Aggregator, SMS (including QR settlement messages)<br>Location and DigiLocker are not on Day 0; both are on the Roadmap |
 | Calculation | None. |
 | Use when | The question needs a connector that is not connected and has not been declined in this chat. |
 | Do not use when | The customer declined this connector earlier in the same chat.<br>During onboarding. |
 | Partial or stale data | If the provider is down, say "try again shortly" and do not show the sheet. |
-| Actions and follow-ups | Connect<br>Not now<br>What is an Account Aggregator?<br>How do I stop it later? |
-| Plan | Free |
+| Actions | Connect<br>Not now |
+| Next nudges | What is an Account Aggregator?<br>How do I stop it later?<br>What can InPrime see about me? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 11 · Connections & permissions — bottom sheets |
 
 ---
 
-### Monthly report card
+### Monthly report card — intelligent card
 
 | Field | Details |
 |---|---|
 | Answers | How did my shop do this month? |
 | Fields and sources | Credits and debits, from Account Aggregator and SMS |
 | Calculation | Money in: add up business credits this month.<br>Money out: add up debits this month, leaving out transfers between the customer's own accounts.<br>Stayed with you: subtract money out from money in.<br>Comparison: percentage change against last month, only if both months are complete. |
-| Use when | At least seven days of bank or SMS data. |
+| Use when | Asked in the chat, with at least seven days of bank or SMS data.<br>On landing, as an intelligent card, for the previous complete month. A push notification also announces it once a month.<br>To confirm: how many days into the new month the card stays on landing. |
 | Do not use when | Less than seven days of data. |
 | Partial or stale data | If some accounts are not linked, label how many are included.<br>If the month is not complete, show the dates covered and leave out the comparison. |
-| Actions and follow-ups | Share report card, with amounts rounded<br>Send me this card every month<br>When was I busiest?<br>Where did my money go? |
-| Plan | Allowance |
+| Actions | Share (amounts and personal details hidden unless the user opts in)<br>Send me this card every month |
+| Next nudges | When was I busiest?<br>Where did my money go?<br>Who paid me the most? |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
 | Figma | 04 · Thread — My shop + report card |
 
 ---
 
-### Plan card
+### Monthly Bureau Update — intelligent card
 
 | Field | Details |
 |---|---|
-| Answers | Why can't I ask more? |
-| Fields and sources | Allowance used, reset date and plan price |
-| Calculation | Reset date: the first day of next month. |
-| Use when | The free allowance is used up and the customer asks a question that counts against it. |
-| Do not use when | The customer has an active InPrime loan.<br>The question is about fraud, an overdue, a grievance or talking to a person. |
-| Partial or stale data | If the allowance count is not available, allow the question. |
-| Actions and follow-ups | Tell me about the paid plan<br>Check my score<br>Set a reminder |
-| Plan | Free |
+| Answers | What changed in my credit report this month?<br>Is anything new on my record?<br>Did my score move? |
+| Fields and sources | This month's and last month's bureau reports for the user, from the credit bureau: score, new loans, overdues, repayments recorded, loans closed, enquiries |
+| Calculation | Compare this month's report with last month's report.<br>List every change: score movement, new loan, new overdue, repayment recorded, loan closed, new enquiry.<br>Rank the changes by importance: a new loan the user may not recognise first, then a new overdue, then a score drop, then new enquiries, then repayments recorded and loans closed.<br>Show the most important change on the card, with a count of the others.<br>Score change: subtract last month's score from this month's score. |
+| Use when | On landing, after the monthly refresh, for every user who has connected the bureau.<br>The user taps the monthly bureau update notification.<br>The user asks what changed in their report. |
+| Do not use when | The bureau is not connected.<br>This is the user's first report, because there is nothing to compare. Show the score card instead. |
+| Partial or stale data | Always show the date of each report.<br>If this month's refresh failed, keep last month's card and say the update is delayed.<br>If nothing changed, say "No changes in your report this month" in text. |
+| Actions | See all changes<br>This loan is not mine (opens card 15) |
+| Next nudges | Why did my score move?<br>Who checked my credit?<br>Show my loans and cards |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. The bureau is refreshed once a month for every user who has connected it. |
+| Figma | Not designed yet. The detailed change cards are 15 to 18 on the Artifacts Board. |
+
+---
+
+### Reminder due — intelligent card
+
+| Field | Details |
+|---|---|
+| Answers | What did I ask you to remind me about? |
+| Fields and sources | Reminder text, date and the chat it came from, from the reminders store |
+| Calculation | Show reminders due today or overdue, earliest first. |
+| Use when | A reminder the user set is due today or has passed without being marked done. |
+| Do not use when | No reminder is due. |
+| Partial or stale data | If the linked data changed, for example the EMI was already paid, say so and offer to clear the reminder. |
+| Actions | Done<br>Remind me later |
+| Next nudges | Show all my reminders<br>Remind me about something else<br>Stop one of these |
+| Plan | Free. No monetisation on Day 0. |
 | Status | Launch |
-| Figma | Not designed yet |
+| Figma | D-02 · Reminders |
+
+---
+
+## L · New Day-0 products
+
+### Document Check result
+
+| Field | Details |
+|---|---|
+| Answers | Is this loan offer genuine?<br>Is this message real?<br>Explain this letter to me<br>What will my EMI be on this? |
+| Fields and sources | The photo or file the user sent (JPG, PNG or PDF up to 10 MB)<br>The model's general knowledge of genuine and fake loan offers<br>InPrime records, only to say whether a letter is from InPrime and whether its figures match the user's InPrime loan |
+| Calculation | None by the model. Any figure read from the document is shown exactly as written in the document, with where it was read from. If the letter is from InPrime, code compares its figures with InPrime records. |
+| Use when | The user sends a document and asks about it.<br>The user chooses the dedicated Document Check option. |
+| Do not use when | The upload is not a document, for example a photo of the shop. Say so in text. |
+| Partial or stale data | Blurry or cut off: ask for a retake.<br>Over 10 MB or a locked PDF: say so and ask for another file.<br>Cannot decide: give the verdict "not sure" with reasons, and offer a person. |
+| Actions | Talk to a person (when the verdict is not sure) |
+| Next nudges | How do I spot a fake loan offer?<br>Check another document<br>What should I do now? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Answered from the model's general knowledge, with its own dedicated option as well as in conversation. |
+| Figma | UP-01 to UP-07 · upload flow<br>To confirm: the verdict card and the "not sure" state are not designed yet. |
+
+---
+
+### Service request
+
+| Field | Details |
+|---|---|
+| Answers | I want to change my mobile number<br>Update my address<br>Change my bank account<br>What is the status of my request? |
+| Fields and sources | The change the user asked for, read from the chat<br>Request reference and status, from InPrime's servicing system |
+| Calculation | None. |
+| Use when | An existing InPrime customer asks to change any of their details.<br>The user asks about a request already raised. |
+| Do not use when | The user is not an InPrime customer.<br>The user only asked a question about their loan. Answer it in the chat instead. |
+| Partial or stale data | Before raising, read the request back and ask the user to confirm.<br>If the servicing system is down, say the request could not be raised and offer to try again. |
+| Actions | Confirm and raise<br>Edit |
+| Next nudges | What is the status of my request?<br>Show my loan details<br>Who is my RO? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. The app raises the request and notifies the user of status changes; what happens after the request is raised is handled outside the app. |
+| Figma | Proposed artifacts · Update my details |
+
+---
+
+### Shareable card and shop poster
+
+| Field | Details |
+|---|---|
+| Answers | Share this with another shopkeeper<br>Make a poster for my shop |
+| Fields and sources | The card or content being shared<br>Shop name and trade, from what the user told us<br>Poster templates, from the Content Library |
+| Calculation | None. On shared cards, amounts and personal details are hidden by default. If the user opts in to show amounts, round them to the nearest hundred. |
+| Use when | The user taps share on a card, the festival calendar or a business knowledge answer.<br>The user asks for a poster. |
+| Do not use when | The content contains another person's personal details. |
+| Partial or stale data | No shop name: ask for it before making the poster. |
+| Actions | Show amounts (opt in)<br>Share on WhatsApp<br>Save image |
+| Next nudges | Make another poster<br>Share the festival calendar<br>How do I get more customers? |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Every share carries the app identity and an install link, and the install is attributed to the sharer. |
+| Figma | Not designed yet. |
+
+---
+
+### Business Knowledge answer
+
+| Field | Details |
+|---|---|
+| Answers | Will I pay charges on UPI payments?<br>How does GST work for my shop?<br>Which government schemes can I use?<br>Should I sell online? |
+| Fields and sources | General business knowledge, from approved sources in the Content Library and the model's general knowledge |
+| Calculation | None from the user's data. A figure that is a public rule, for example an MDR rate or a GST threshold, is quoted with its source and the date it applies from. |
+| Use when | The question is about business, money rules or the user's trade in general, not about the user's own figures. |
+| Do not use when | The question needs the user's own data. Use the matching data card, or the connect sheet. |
+| Partial or stale data | Always say the answer is general knowledge, not the user's own data.<br>Cite the source.<br>If the rule may have changed, say when the source was last reviewed. |
+| Actions | Share (amounts and personal details hidden) |
+| Next nudges | How does this affect my shop?<br>Tell me more<br>Share this with another shopkeeper |
+| Plan | Free. No monetisation on Day 0. |
+| Status | Launch. Text only, no card. Detail page and design to be added. |
+| Figma | Not designed yet. |
