@@ -3,12 +3,6 @@
 Worked customer situations that define what "personalised" means. Each is a reference case for the
 chain and a test case for the evaluation set. Loaded per case, never whole.
 
-**Plan note.** Free and paid tiers are a proposal until the commercial model is decided:
-ETI customers with an active loan get everything free; others get a monthly free allowance of
-analytical questions (size to set), with a paid tier for more. Home preload, alerts, reminders,
-connectors, grievance, fraud help and talking to a person never count against the allowance.
-
----
 
 ## S1 · Nothing connected
 
