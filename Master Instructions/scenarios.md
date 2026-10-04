@@ -2,18 +2,19 @@
 
 Worked customer situations that define what "personalised" means. Each scenario is a reference case for the chain and a test case for the evaluation set. Look up one scenario at a time. Never load the whole file.
 
-## Day-0 decisions these scenarios follow
+## Rules these scenarios follow
 
-| Decision | What it means for every scenario |
+| Rule | What it means in every scenario |
 |---|---|
-| Monetisation of any kind is out of scope for Day 0. | Every customer is on the free experience. There is no paid plan and no usage allowance. |
-| Intelligent cards are the central cards shown when the user lands on the app. Day-0 scope: facts that are due or have changed. | On landing, show only an upcoming or overdue EMI, the monthly report card, the most important bureau changes each month, or a reminder the user set. A thin strip shows anything overdue until it is resolved. |
+| Every user is on the free experience. | There is no paid plan and no usage allowance. |
+| Intelligent cards are the central cards shown when the user lands on the app. They show facts that are due or have changed. | On landing, show only an upcoming or overdue EMI, the monthly report card, the most important bureau changes each month, or a reminder the user set. A thin strip shows anything overdue until it is resolved. |
 | Three next nudges sit above the chat box, generated fresh on landing and after every answer. | Every scenario lists exactly three next nudges. Whenever advice would be relevant, one nudge invites the user to ask for it. |
 | Answers are useful and comprehensive, yet simple and concise, with the cards that help, or none. | An answer may use headings, lists or a table, and more than one card. |
 | Their data or general knowledge, always clear which. | Every answer says which parts come from the user's own data, with the date it was read, and which parts are general knowledge, with the source. |
-| Unprompted advice is out of scope for Day 0. | Intelligent cards state facts. Advice is given when the user asks. |
+| The assistant does not volunteer advice. | Intelligent cards state facts. Advice is given when the user asks. |
 | The assistant recommends actions for the user's own money and business, and never strongly recommends another institution. | The assistant may say "clear the overdue first". It never says "take a loan from this lender". |
-| Spoken replies are out of scope for Day 0. | Voice input is converted to text and shown back before sending. Replies are text and cards. |
+| Replies are text and cards only. | Voice input is converted to text and shown back before sending. |
+
 
 ---
 
@@ -25,7 +26,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Kannada, in Kannada script |
 | Known financial facts and their sources | Name, occupation and shop name, from onboarding<br>No financial facts |
 | Connected, declined and unavailable sources | Connected: none<br>Declined: none |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | None |
 | What appears when the app opens | Greeting with the user's name<br>No intelligent card, because nothing is due or has changed<br>No numbers |
 | Next nudges | What is my credit score?<br>How did my shop do this month?<br>Is this loan offer genuine? |
@@ -46,7 +47,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Hindi, in Devanagari script |
 | Known financial facts and their sources | EMI amount, due date and auto-pay status, from InPrime loan records, read today at 07:10<br>Balance of ₹18,240 in the Canara account, from Account Aggregator, read yesterday |
 | Connected, declined and unavailable sources | Connected: InPrime loan records, credit bureau, Account Aggregator<br>Declined: SMS |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Asked about income last week |
 | What appears when the app opens | Intelligent card: Next EMI. ₹12,450 on 5 September, "Auto-pay is on. Nothing for you to do."<br>No strip, because nothing is overdue or uncovered. |
 | Next nudges | Will my balance cover it?<br>How did my shop do this month?<br>Show my repayment schedule |
@@ -67,14 +68,14 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | English with Hindi words, in Latin script |
 | Known financial facts and their sources | InPrime overdue, from InPrime loan records, read today<br>Bajaj overdue, from the credit bureau report dated 24 July |
 | Connected, declined and unavailable sources | Connected: InPrime loan records, credit bureau<br>Not connected: Account Aggregator, SMS |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Ignored an EMI reminder 12 days ago |
 | What appears when the app opens | Strip: "2 loans overdue, ₹21,180, oldest is 12 days late".<br>Intelligent card: the InPrime overdue. |
 | Next nudges | What should I pay first?<br>What does this do to my score?<br>Show my RO's details |
 | What the customer asks | Taps the strip |
 | What the answer says and which card appears | Two payments are late. Ours is ₹8,730, 12 days late. Bajaj shows ₹12,450 overdue on the credit report dated 24 July.<br>Recommends the action: clear the overdue amounts as soon as possible, because missed payments are reported to the bureau.<br>Cards: InPrime loan overdue, with Pay after confirming the amount. Overdue detected for Bajaj, with no Pay button. |
 | Follow-ups offered | Pay the InPrime amount<br>I already paid Bajaj<br>Show my RO's details |
-| What must not be shown or claimed | A threat, legal action or recovery language<br>A claim that the Bajaj loan is still unpaid today<br>A point figure for the score effect<br>A Pay button on the Bajaj loan. Paying other lenders' EMIs from the chat is not on Day 0; it is on the Roadmap. |
+| What must not be shown or claimed | A threat, legal action or recovery language<br>A claim that the Bajaj loan is still unpaid today<br>A point figure for the score effect<br>A Pay button on the Bajaj loan. The app takes payment only for InPrime loans. |
 | If data is missing, stale or the request fails | Payment fails: no double charge, offer retry.<br>"I already paid Bajaj": say the bureau can take up to 45 days to update, and remember what the user told us.<br>The user mentions hardship: show the RO's details with the option to call, and the human escalation path. |
 | Why this is useful | One calm view of what is late and the single action to take. |
 
@@ -88,14 +89,14 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Kannada, in Kannada script |
 | Known financial facts and their sources | New account, lender, date opened and amount, from this month's credit bureau report dated 2 August |
 | Connected, declined and unavailable sources | Connected: credit bureau, SMS |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Received the monthly bureau update notification and opened the app from it |
 | What appears when the app opens | Intelligent card: Monthly Bureau Update, with "New loan in your name" as the most important change. |
 | Next nudges | This loan is not mine<br>Who checked my credit?<br>Show my loans and cards |
 | What the customer asks | "I never took this loan" |
 | What the answer says and which card appears | Takes it seriously. Says the report shows this loan opened on 14 July, and that we cannot confirm fraud from here.<br>Explains how to dispute it directly with the credit bureau and with the lender, as general knowledge with the source cited.<br>Card: New loan detected. |
 | Follow-ups offered | How do I raise a dispute?<br>Will this affect my score?<br>Talk to a person |
-| What must not be shown or claimed | That it is fraud, or that it is not fraud<br>A promise that it will be removed<br>A point figure for the score effect<br>That the app will raise the dispute. Raising and tracking a bureau dispute in the app is not on Day 0; it is on the Roadmap. |
+| What must not be shown or claimed | That it is fraud, or that it is not fraud<br>A promise that it will be removed<br>A point figure for the score effect<br>That the app will raise the dispute. The app explains how to dispute; it does not raise or track a dispute. |
 | If data is missing, stale or the request fails | Lender name missing on the report: say so.<br>The user is an InPrime customer: offer their RO's details as well. |
 | Why this is useful | A frightening discovery gets a calm, correct next step instead of silence. |
 
@@ -109,7 +110,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Hindi, in Devanagari script |
 | Known financial facts and their sources | Credits and debits from 9 to 30 September, from Account Aggregator, for the SBI account only<br>The second account is at a cooperative bank that is not on Account Aggregator |
 | Connected, declined and unavailable sources | Connected: Account Aggregator (one of two accounts)<br>Declined: SMS<br>Unavailable: the cooperative bank account |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Linked the bank 22 days ago |
 | What appears when the app opens | No intelligent card, because the month's report card needs a complete month. |
 | Next nudges | How did my shop do this month?<br>Where did my money go?<br>Connect my other bank |
@@ -117,7 +118,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | What the answer says and which card appears | From 9 to 30 September, ₹64,300 came into the SBI account. Says plainly that the other bank and cash sales are not included.<br>Card: In and out totals, labelled "1 of 2 accounts", with the dates covered and no comparison with last month. |
 | Follow-ups offered | Connect my other bank<br>Where did my money go?<br>When was I busiest? |
 | What must not be shown or claimed | A figure for the full month<br>A comparison with last month<br>"Good month" or "bad month" |
-| If data is missing, stale or the request fails | Fewer than seven days of data: answer in text with the dates covered.<br>Other bank not on Account Aggregator: say so; it cannot be linked on Day 0.<br>Account Aggregator down: last data with its date. |
+| If data is missing, stale or the request fails | Fewer than seven days of data: answer in text with the dates covered.<br>Other bank not on Account Aggregator: say so; it cannot be linked.<br>Account Aggregator down: last data with its date. |
 | Why this is useful | A real number the user can trust, with the gaps stated plainly. |
 
 ---
@@ -130,7 +131,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | English, in Latin script |
 | Known financial facts and their sources | Three loans and their EMIs, from the credit bureau report dated 24 July<br>InPrime EMI, from InPrime loan records |
 | Connected, declined and unavailable sources | Connected: credit bureau, InPrime loan records<br>Declined: Account Aggregator, SMS |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Tapped Not now on the bank connect sheet five minutes ago |
 | What appears when the app opens | Unchanged |
 | Next nudges | How much am I paying every month?<br>What is an Account Aggregator?<br>What can InPrime see about me? |
@@ -143,16 +144,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 
 ---
 
-## S7 · Free allowance used up
-
-| Field | Details |
-|---|---|
-| Status | Not on Day 0. Monetisation of any kind is out of scope for Day 0 and will be revisited once virality is solved. There is no free allowance and no paid plan to run out of. |
-| To confirm | Whether a usage limit is needed on Day 0 to control model cost, without charging the user. If yes, this scenario returns with a limit message and no payment. |
-
----
-
-## S8 · Business knowledge question
+## S7 · Business knowledge question
 
 | Field | Details |
 |---|---|
@@ -160,20 +152,20 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Hindi and English mixed, in Latin script |
 | Known financial facts and their sources | Income through QR, from SMS settlement messages |
 | Connected, declined and unavailable sources | Connected: SMS |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | None |
 | What appears when the app opens | Intelligent card: monthly report card, if a complete month exists |
 | Next nudges | How did my shop do this month?<br>Where does my money come from?<br>Is this loan offer genuine? |
 | What the customer asks | "Will I pay charges on UPI payments now?" |
 | What the answer says and which card appears | Explains the merchant discount rate rules as general knowledge: what is charged, on which payments, the cap, the exemption, and the date it applies from. Cites the source.<br>Says clearly this is general knowledge, not a calculation from their own payments.<br>No card. |
 | Follow-ups offered | How does this affect my shop?<br>Where does my money come from?<br>Share this with another shopkeeper |
-| What must not be shown or claimed | A figure for what this shop will pay. The actual MDR a shop paid, per app and per month, is not on Day 0: it is on the Roadmap, held back by settlement-level data reliable enough to compute charges.<br>Advice to refuse a payment method |
+| What must not be shown or claimed | A figure for what this shop will pay. MDR is answered only as general knowledge, never calculated from the shop's own payments.<br>Advice to refuse a payment method |
 | If data is missing, stale or the request fails | The rule may have changed: say when the source was last reviewed. |
 | Why this is useful | A worrying rumour is answered correctly and simply, from a named source. |
 
 ---
 
-## S9 · Document check
+## S8 · Document check
 
 | Field | Details |
 |---|---|
@@ -181,7 +173,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Kannada, in Kannada script |
 | Known financial facts and their sources | None needed |
 | Connected, declined and unavailable sources | Connected: none |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Chose the dedicated Document Check option |
 | What appears when the app opens | Greeting. No intelligent card. |
 | Next nudges | Is this loan offer genuine?<br>Explain a letter to me<br>How do I spot a fake loan offer? |
@@ -194,7 +186,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 
 ---
 
-## S10 · Service request
+## S9 · Service request
 
 | Field | Details |
 |---|---|
@@ -202,7 +194,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | English, in Latin script |
 | Known financial facts and their sources | Current mobile number and loan, from InPrime loan records |
 | Connected, declined and unavailable sources | Connected: InPrime loan records |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | None |
 | What appears when the app opens | Intelligent card: Next EMI, if one is due within seven days |
 | Next nudges | When is my next EMI?<br>Update my details<br>Show my loan details |
@@ -215,7 +207,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 
 ---
 
-## S11 · Sharing with another shopkeeper
+## S10 · Sharing with another shopkeeper
 
 | Field | Details |
 |---|---|
@@ -223,7 +215,7 @@ Worked customer situations that define what "personalised" means. Each scenario 
 | Language and script | Kannada, in Kannada script |
 | Known financial facts and their sources | Shop name and trade, from onboarding |
 | Connected, declined and unavailable sources | Connected: SMS |
-| Free or paid plan | Free. No monetisation on Day 0. |
+| Free or paid plan | Free |
 | Recent conversation or action | Asked "When is the next festival?" |
 | What appears when the app opens | Unchanged |
 | Next nudges | Make a poster for my shop<br>Share the festival calendar<br>How much should I stock? |
